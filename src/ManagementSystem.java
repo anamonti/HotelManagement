@@ -23,7 +23,7 @@ public class ManagementSystem {
     public boolean addGuest(Guest newGuest) {
         if (guests.isEmpty()) {
             guests.add(newGuest);
-            System.out.println("Guest added successfully");
+            System.out.println("Guest "+ newGuest.getName() + " added successfully");
             return true;
         } else {
             for (Guest guest : guests) {

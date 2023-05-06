@@ -14,7 +14,7 @@ public class Manager extends Employee {
 
     @Override
     public void displayDetails() {
-        System.out.println("** MANAGER **");
+        System.out.println("\n** MANAGER **");
         System.out.println("Employee Name: " + getName());
         System.out.println("CPF: " + getCpf());
         System.out.println("Salary: " + getSalary());
@@ -22,8 +22,15 @@ public class Manager extends Employee {
         System.out.println("System Credentials: " + systemCredentials);
     }
 
-    public CleaningService setCleaningService(int roomNumber, Date date, Cleaner cleaner) {
-        return new CleaningService(roomNumber, date, cleaner);
+    public CleaningService setCleaningService(Room room, Date date, Cleaner cleaner) {
+    	if (managementSystem.login(systemCredentials)) {
+	    	CleaningService service = new CleaningService(room, date, cleaner);
+	    	System.out.println("A new cleaning service was scheduled for " + service.getDate() + " for the room " + service.getRoom() );
+	        return service;
+    	} else {
+            System.out.println("Login failed");
+        }
+    	return null;
     }
 
     public Guest registerGuest(String name, String address, int age, String cpf) {
@@ -39,7 +46,11 @@ public class Manager extends Employee {
     public Reservation addReservation(int id, Room room, Guest guest) {
         if (managementSystem.login(systemCredentials)) {
             Reservation reservation = new Reservation(id, room, guest);
-            if (managementSystem.addReservation(reservation)) return reservation;
+            if (managementSystem.addReservation(reservation)) {
+            	System.out.println(String.format("Reservation details: \n\tID: %s\n\tROOM: %s\n\tGUEST: %s, %s",
+            			id, room.getRoomNumber(), guest.getName(), guest.getCPF()));
+            	return reservation;
+            }
         } else {
             System.out.println("Login failed");
         }

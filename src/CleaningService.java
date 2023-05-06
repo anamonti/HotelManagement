@@ -9,12 +9,9 @@ public class CleaningService {
     private Date serviceSchedule;
     private Cleaner cleaner;
 
-    public CleaningService() {
-    }
-
-    public CleaningService(int roomNumber, Date serviceSchedule, Cleaner cleaner) {
+    public CleaningService(Room room, Date serviceSchedule, Cleaner cleaner) {
         this.serviceId = generateRandomId();
-        this.roomNumber = roomNumber;
+        this.roomNumber = room.getRoomNumber();
         this.serviceSchedule = serviceSchedule;
         this.cleaner = cleaner;
     }
@@ -22,5 +19,13 @@ public class CleaningService {
     private int generateRandomId() {
         Random random = new Random();
         return random.nextInt(100);
+    }
+    
+    public Date getDate() {
+    	return serviceSchedule;
+    }
+    
+    public int getRoom() {
+    	return roomNumber;
     }
 }
