@@ -8,20 +8,25 @@ public class Receptionist extends Employee {
 
     @Override
     public void displayDetails() {
-        System.out.println("** RECEPTIONIST **");
+        System.out.println("\n** RECEPTIONIST **");
         System.out.println("Employee Name: " + getName());
         System.out.println("CPF: " + getCpf());
         System.out.println("Salary: " + getSalary());
         System.out.println("Extension Number: " + extensionNumber);
     }
 
-    public Amenities addAmenities(int quantity, String description) {
-        return new Amenities(quantity, description);
+    public void addAmenities(Reservation reservation, int quantity, String description) {
+    	Amenities amenities = new Amenities(quantity, description);
+    	Room room = reservation.getRoom();
+    	room.addAmenities(amenities);
+    	System.out.println("Amenities added to room " + room.getRoomNumber() + " successfully");
+        return;
     }
 
     public Payment addPayment(int paymentId, double value, Reservation reservation) {
         Payment payment = new Payment(paymentId, value, reservation);
         payment.processPayment(reservation);
+        System.out.println(String.format("The reservation of room %s received a payment of %s", reservation.getRoom().getRoomNumber(), value));
         return payment;
     }
 

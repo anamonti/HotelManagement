@@ -18,6 +18,10 @@ public class Guest {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public String getCPF() {
+    	return cpf;
+    }
 
     public void getGuestDetails() {
         System.out.println("Name: " + name);

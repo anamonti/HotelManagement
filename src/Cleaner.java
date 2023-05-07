@@ -9,7 +9,7 @@ public class Cleaner extends Employee {
 
     @Override
     public void displayDetails() {
-        System.out.println("** CLEANER **");
+        System.out.println("\n** CLEANER **");
         System.out.println("Employee Name: " + getName());
         System.out.println("CPF: " + getCpf());
         System.out.println("Salary: " + getSalary());
